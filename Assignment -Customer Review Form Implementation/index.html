@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8e1f4; /* Light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        form {
+            background-color: #ffffff; /* White background for form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Reduced width */
+            text-align: center;
+        }
+        input, select, textarea {
+            width: calc(100% - 20px); /* Adjusted for padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #d1d1d1;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #e63946; /* Red button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d62839; /* Darker red on hover */
+        }
+        #reviews {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            width: 300px; /* Match form width */
+        }
+        .review-item {
+            border: 1px solid #d1d1d1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        h1 {
+            color: #6a0572; /* Purple header */
+        }
+        h2 {
+            color: #e63946; /* Red subheader */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Customer Reviews</h1>
+    <form id="reviewForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <select id="rating" required>
+            <option value="">Rate your experience</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+        <textarea id="comment" placeholder="Your Review" rows="4" required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <h2>Reviews:</h2>
+    <ul id="reviews"></ul>
+
+    <script>
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value;
+            
+            const reviewItem = document.createElement('li');
+            reviewItem.className = 'review-item';
+            reviewItem.textContent = `${name} (Rating: ${rating}): ${comment}`;
+            document.getElementById('reviews').appendChild(reviewItem);
+
+            // Clear the form fields
+            this.reset();
+        });
+    </script>
+</body>
+</html>
